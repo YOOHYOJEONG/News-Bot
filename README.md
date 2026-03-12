@@ -1,4 +1,4 @@
-# Kakao News Bot
+# News Bot
 
 네이버 뉴스 섹션에서 주요 기사 헤드라인을 수집해 보여주는 FastAPI 기반 뉴스 뷰어입니다.  
 각 카테고리별로 상위 5개의 기사 제목과 원문 링크를 가져와 웹 화면에 표시합니다.
@@ -36,7 +36,7 @@
 ## 프로젝트 구조
 
 ```text
-kakao-news-bot/
+news-bot/
 ├── crawler.py
 ├── main.py
 ├── requirements.txt
