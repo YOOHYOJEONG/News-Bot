@@ -37,6 +37,10 @@
 
 ```text
 news-bot/
+├── app/
+│   ├── __init__.py
+│   ├── crawler.py
+│   └── main.py
 ├── crawler.py
 ├── main.py
 ├── requirements.txt
@@ -49,13 +53,13 @@ news-bot/
 
 ## 파일 설명
 
-### `main.py`
+### `app/main.py`
 
 - FastAPI 앱 엔트리 포인트입니다.
 - `/` 경로에서 메인 페이지를 렌더링합니다.
 - `/api/news` 경로에서 크롤링 결과를 JSON으로 반환합니다.
 
-### `crawler.py`
+### `app/crawler.py`
 
 - 네이버 뉴스 섹션별 크롤링 로직이 들어 있습니다.
 - 각 URL별로 다른 CSS selector를 적용해 기사 제목과 링크를 추출합니다.
@@ -92,6 +96,12 @@ pip install -r requirements.txt
 
 ```bash
 uvicorn main:app --reload
+```
+
+패키지 경로로 실행해도 동일하게 동작합니다.
+
+```bash
+uvicorn app.main:app --reload
 ```
 
 브라우저에서 아래 주소로 접속합니다.
@@ -142,4 +152,13 @@ http://localhost:8000/api/news
 - 일부 섹션은 `breakingnews` 계열, 일부는 `section` 계열이라 selector가 다르게 적용됩니다.
 - 네트워크 상태나 사이트 응답 상태에 따라 특정 카테고리가 비어 있을 수 있습니다.
 
+## Render 배포
+
+Render에서는 `--reload` 없이 실행하는 것이 맞습니다. 현재 구조에서는 아래 시작 명령을 사용하면 됩니다.
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+만약 Render 설정에 `app.main:app` 대신 `main:app`를 써도 동작하도록 루트 호환 파일을 남겨두었지만, 배포용 엔트리포인트는 `app.main:app`으로 고정하는 편이 명확합니다.
 
