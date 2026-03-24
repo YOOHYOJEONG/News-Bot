@@ -162,3 +162,4 @@ uvicorn app.main:app --host 0.0.0.0 --port $PORT
 
 만약 Render 설정에 `app.main:app` 대신 `main:app`를 써도 동작하도록 루트 호환 파일을 남겨두었지만, 배포용 엔트리포인트는 `app.main:app`으로 고정하는 편이 명확합니다.
 
+추가로 Python 버전은 `3.11` 계열로 고정하는 편이 안전합니다. 이 프로젝트는 [.python-version](/home/hjyoo/workspace/kakao-news-bot/.python-version) 파일로 `3.11.11`을 명시합니다.
